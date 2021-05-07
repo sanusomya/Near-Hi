@@ -3,34 +3,27 @@ package com.example.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.RelativeLayout;
-import android.widget.Switch;
-import android.widget.Toolbar;
-
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity {
-
+public class Chat extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_chat);
+
         // finding toolbar and setting it as the default
         androidx.appcompat.widget.Toolbar toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-       //hooking all the other views for side drawer
+        //hooking all the other views for side drawer
         NavigationView navigationView=findViewById(R.id.nav_view);
         DrawerLayout drawerLayout=findViewById(R.id.drawer_layout);
 
@@ -42,17 +35,17 @@ public class MainActivity extends AppCompatActivity {
         //hooking the bottom navigation
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_nav);
         //setting the default item
-        bottomNavigationView.setSelectedItemId(R.id.bottom_home);
+        bottomNavigationView.setSelectedItemId(R.id.bottom_chat);
         //setting the on navigation listner
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.bottom_home:
+                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        overridePendingTransition(0,0);
                         break;
                     case R.id.bottom_chat:
-                        startActivity(new Intent(getApplicationContext(),Chat.class));
-                        overridePendingTransition(0,0);
                         break;
                     case R.id.bottom_location:
                         startActivity(new Intent(getApplicationContext(),Location.class));
